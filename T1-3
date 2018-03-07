@@ -1,0 +1,142 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+using namespace std;
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main(int argc, char** argv) {
+	int task_num;
+	cout << "Enter the task number: " << endl;
+	cin >> task_num;
+    
+	if(task_num==1)
+	{
+	    int size = 20;
+        
+    
+	    int arrNumber[20];
+	    srand(time(NULL));
+
+	    for (int i = 0; i <= size - 1; i++)
+	    {
+	     	arrNumber[i] = -10 + rand() % 109;
+	    }
+
+	    cout << "Do sortirovki " << endl;
+	    for (int i = 0; i <= size - 1; i++)
+	    {
+	    	cout << "arr[" << i << "] = " << arrNumber[i] << endl;
+	    }
+
+	    for (int i = 0; i < size; i++)
+	    {
+		    for (int j = (size - 1); j > i; j--)
+		    {
+			    if (arrNumber[j - 1] > arrNumber[j])
+			    {
+				    int temp = arrNumber[j - 1];
+				    arrNumber[j - 1] = arrNumber[j];
+				    arrNumber[j] = temp;
+			    }
+		    }
+	    }
+	    cout << "Posle sortirovki " << endl;
+	    for (int i = 0; i <= size - 1; i++)
+	    {
+	    	cout << "arr[" << i << "] = " << arrNumber[i] << endl;
+	    }
+        for (int i = 0; i <= size - 1; i++)
+	    {
+            if (arrNumber[i]<0)
+            {
+        	    for (int i = 0; i < size; i++)
+        	    {   
+		            for (int j = (size - 1); j > i; j--)
+		            {
+			            if (arrNumber[j - 1] < arrNumber[j])
+			            {
+				            int temp = arrNumber[j - 1];
+				            arrNumber[j - 1] = arrNumber[j];
+				            arrNumber[j] = temp;
+			            }
+		            }
+	            }
+            }
+        }
+        cout << "Posle perestanovki " << endl;
+        for (int i = 0; i <= size - 1; i++)
+	    {
+		    cout << "arr[" << i << "] = " << arrNumber[i] << endl;
+	    }
+	}
+	else if (task_num==2)
+	{
+		const int CE = 10;
+        const int TOP = CE-1;
+
+        int iArr1[CE]={0,1,2,3,4,5,6,7,8,9};
+        int iArr2[CE]={5,6,7,8,9,10,11,12,13,14};
+        int iArr3[CE]={0,0,0,0,0,0,0,0,0,0};
+        int i;
+        int j;
+        int iCarr3 = 0;
+
+        for(i=0; i<=TOP; i++)
+        {
+            for (j=0; j<=TOP; j++)
+            {
+                if (iArr1[i]==iArr2[j])
+                {
+                    iCarr3++;
+                    iArr3[iCarr3]=iArr2[j];
+                }
+            }
+        }
+        for (i = 0; i < CE; i++) 
+            cout<<iArr3[i]<<" ";
+	}
+	else if (task_num==3)
+	{
+		const int n=4;
+        int mas[n][n];
+        int location =1;
+        srand(time(NULL));
+        cout<<"\tIshodnaya matrica: \n"<<endl;
+        for (int i=0; i<n; i++)
+        {
+            for (int j=0; j<n; j++)
+            {
+                mas[i][j]=rand()%10;
+                cout<<"\t"<<mas[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        cout<<"\n\tSumma elementov kajdoi stroki ravna: \n"<<endl;
+    
+	    int sum[n]={0};
+        for (int i=0; i<n; i++)
+        {
+            for (int j=0; j<n; j++)
+            {
+                sum[i]+=mas[i][j];
+            
+            }   
+            cout<<"\t"<<sum[i]<<" ";
+        }
+        int maxsum=sum[0];
+        for (int i=0; i<n-1; i++)
+        {
+            if (sum[i]>maxsum)
+            {
+                maxsum=sum[i];
+                location =i+1;
+            }
+        }
+        cout<<endl;
+        cout<<"\n\tMaximal'nyi element "<< maxsum << " v stroke " << location << endl;;
+    
+	}
+	return 0;
+}
